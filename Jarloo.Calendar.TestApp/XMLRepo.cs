@@ -33,11 +33,34 @@ namespace Jarloo.Calendar.TestApp
 
         public void SaveDate(Day day)
         {
-            var appointement = new XElement("Appointment");
-            appointement.Add(new XElement("Date", day.Date.ToString("yyyy-MM-dd")));
-            appointement.Add(new XElement("Content", day.Notes));
-            Repo.Add(appointement);
-            Repo.Save(repoPath);
+            //first check that the notes is not already in repo
+
+            var t = CheckDayForNotes(day.Date);
+            if (t == day.Notes)
+            {}
+            else
+            {
+                //if new post, then remove old one
+                var el = Repo.XPathSelectElement(string.Format("Appointment/Date[text()='{0}']/..", day.Date.ToString("yyyy-MM-dd")));
+                if (el != null)
+                {
+                    el.Remove();
+                    Repo.Save(repoPath);
+                }
+                if (!string.IsNullOrEmpty(day.Notes))
+                {
+                    var appointement = new XElement("Appointment");
+                    appointement.Add(new XElement("Date", day.Date.ToString("yyyy-MM-dd")));
+                    appointement.Add(new XElement("Content", day.Notes));
+                    Repo.Add(appointement);
+                    Repo.Save(repoPath);
+
+                }
+            }
+                
+                    
+            
+            
         }
 
         public string CheckDayForNotes(DateTime date)

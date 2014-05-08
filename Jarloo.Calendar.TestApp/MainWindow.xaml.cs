@@ -38,6 +38,7 @@ namespace Jarloo.Calendar.TestApp
 
             cboMonth.SelectionChanged += (o, e) => RefreshCalendar();
             cboYear.SelectionChanged += (o, e) => RefreshCalendar();
+            RefreshCalendar();
         }
 
         private void RefreshCalendar()
@@ -55,28 +56,13 @@ namespace Jarloo.Calendar.TestApp
             var daysOfMont = Calendar.Days.Where<Day>(d => d.Date.Month == month);
             mRepo.GetNotesForDays(daysOfMont);
         }
-        private static DateTime currentDay;
-        private bool postDone = false;
+        private static Day currentDay;
+        private bool init = true;
         private Day previousDay;
         private void Calendar_DayChanged(object sender, DayChangedEventArgs e)
         {
             //save the text edits to persistant storage
-            if (postDone)
-            {
-                if (currentDay != e.Day.Date)
-                {
-                    mRepo.SaveDate(previousDay);
-                    currentDay = e.Day.Date;
-                    postDone = false;
-                }
-
-            }
-            else
-            {
-                currentDay = e.Day.Date;
-                previousDay = e.Day;
-                postDone = true;
-            }
+            mRepo.SaveDate(e.Day);
         }
 
     }       
