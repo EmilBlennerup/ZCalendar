@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace Jarloo.Calendar.TestApp
+namespace Jarloo.Calendar.DataRepo
 {
     public class XMLRepo : IRepo
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Jarloo.Calendar.TestApp
+namespace Jarloo.Calendar.DataRepo
 {
     public interface IRepo
     {

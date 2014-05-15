@@ -6,21 +6,53 @@
     http://creativecommons.org/licenses/by-sa/3.0/ 
 
 -->
-    <Window xmlns:Jarloo="clr-namespace:Jarloo.Calendar;assembly=Jarloo.Calendar"
+<Window xmlns:Jarloo="clr-namespace:Jarloo.Calendar;assembly=Jarloo.Calendar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"  xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  x:Class="Jarloo.Calendar.TestApp.MainWindow"
         Title="Jarloo Calendar Control" Height="687" Width="1007" Foreground="White">
-	
-	<Window.Background>
-		<RadialGradientBrush>
-			<GradientStop Color="#FF313131" Offset="0"/>
-			<GradientStop Color="#FF181818" Offset="1"/>
-		</RadialGradientBrush>
-	</Window.Background>
-    <Grid>
-        <Jarloo:Calendar x:Name="Calendar" DayChanged="Calendar_DayChanged" Margin="-211,47,210.8,-1.4" />
+
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="#FF313131" Offset="0"/>
+            <GradientStop Color="#FF181818" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
+    <StackPanel>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New..." />
+                <Separator />
+                <MenuItem Header="_Open..." />
+                <Separator />
+                <MenuItem Header="_Save" />
+                <MenuItem Header="_Save As..." />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Edit" Click="MenuItem_PointsValueClick">
+                <MenuItem Header="_Points per shift" />
+                <MenuItem Header="_Hours per shift" />
+                <MenuItem Header="_Points value" Click="MenuItem_PointsValueClick"/>
+                <Separator />
+                <MenuItem Header="_Inject holidays" Click="MenuItem_HollidayClick"/>
+            </MenuItem>
+            <MenuItem Header="_View" />
+            <MenuItem Header="_Window" />
+            <MenuItem Header="_Help" />
+        </Menu>
+        <Grid>
+        
+        <Jarloo:Calendar x:Name="Calendar" DayChanged="Calendar_DayChanged" Margin="8,47,-8.2,-1.4" />
         <ComboBox x:Name="cboMonth" HorizontalAlignment="Left" Height="34" Margin="8,8,0,0" VerticalAlignment="Top" Width="152" FontSize="18.667" DisplayMemberPath="{Binding}" />
         <ComboBox x:Name="cboYear" Height="34" Margin="164,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87" FontSize="18.667" DisplayMemberPath="{Binding}" />
+        <TextBlock HorizontalAlignment="Left" Margin="407,10,0,0" TextWrapping="Wrap" Text="Total Points for Month" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPoints" HorizontalAlignment="Left" Height="23" Margin="547,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBlock HorizontalAlignment="Left" Margin="407,43,0,0" TextWrapping="Wrap" Text="Total Hours worked" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbHours" HorizontalAlignment="Left" Height="23" Margin="547,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBlock HorizontalAlignment="Left" Margin="691,25,0,0" TextWrapping="Wrap" Text="Calculated Sum" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSum" HorizontalAlignment="Left" Height="23" Margin="831,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        
     </Grid>
+    </StackPanel>
 </Window>

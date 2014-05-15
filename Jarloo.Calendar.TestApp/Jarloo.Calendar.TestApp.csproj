@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Jarloo.Calendar.TestApp</RootNamespace>
     <AssemblyName>Jarloo.Calendar.TestApp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -37,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions" />
@@ -61,8 +63,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="IRepo.cs" />
-    <Compile Include="XMLRepo.cs" />
+    <Compile Include="InjectHolidays.xaml.cs">
+      <DependentUpon>InjectHolidays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDayShiftPoints.xaml.cs">
+      <DependentUpon>ManageDayShiftPoints.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetPointsValue.xaml.cs">
+      <DependentUpon>SetPointsValue.xaml</DependentUpon>
+    </Compile>
+    <Page Include="InjectHolidays.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,6 +88,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManageDayShiftPoints.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SetPointsValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -102,9 +123,17 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataRepo\DataRepo.csproj">
+      <Project>{a188e193-d5e6-4bc2-ae5f-1063b0a8023d}</Project>
+      <Name>DataRepo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Jarloo.Calendar\Jarloo.Calendar.csproj">
       <Project>{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}</Project>
       <Name>Jarloo.Calendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Points\Points.csproj">
+      <Project>{a7f453c8-2041-428b-b585-1ebd05857006}</Project>
+      <Name>Points</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -49,7 +49,7 @@ namespace Jarloo.Calendar
         public void BuildCalendar(DateTime targetDate)
         {
             Days.Clear();
-
+            
             //Calculate when the first day of the month is and work out an 
             //offset so we can fill in any boxes before that.
             DateTime d = new DateTime(targetDate.Year, targetDate.Month, 1);
@@ -59,7 +59,7 @@ namespace Jarloo.Calendar
             //Show 6 weeks each with 7 days = 42
             for (int box = 1; box <= 42; box++)
             {
-                Day day = new Day {Date = d, Enabled = true, IsTargetMonth = targetDate.Month == d.Month};//add call to persisten storage check if date has notes
+                Day day = new Day {Date = d, Enabled = true, IsTargetMonth = targetDate.Month == d.Month};
                 day.PropertyChanged += Day_Changed;
                 day.IsToday = d == DateTime.Today; 
                 Days.Add(day);
